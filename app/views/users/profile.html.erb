@@ -1,29 +1,95 @@
-<div class="container">
-  <h1>Страница пользователя</h1>
 
-  <table class="table">
-    <tbody>
-    <tr>
-      <th>Фамилия</th>
-      <td>Иванов</td>
-    </tr>
-    <tr>
-    <tr>
-      <th>Имя</th>
-      <td>Иван</td>
-    </tr>
-    <tr>
-      <th>Отчество</th>
-      <td>Иванович</td>
-    </tr>
-    <tr>
-      <th scope="row">email</th>
-      <td>Jacob</td>
-    </tr>
-    <tr>
-      <th>Пол</th>
-      <td>Мужской <button class="btn btn-success mb-3">Подтвердить</button></td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+<% if user_signed_in? %>
+  <div class="container">
+    <div class="col-md-8">
+      <h1>Здравствуйте, <%= @user.first_name %></h1>
+      <div class="card mb-3">
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Фамилия</h6>
+            </div>
+
+            <div class="col-sm-9 text-secondary">
+              <%= @user.last_name %>
+            </div>
+          </div>
+          <hr>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Имя</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              <%= @user.first_name %>
+            </div>
+          </div>
+          <hr>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Отчество</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              <%= @user.patronymic %>
+            </div>
+          </div>
+          <hr>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Email</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              <%= @user.email %>
+            </div>
+          </div>
+          <hr>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Пол (определён автоматически)</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              <%= @user.first_name %>
+            </div>
+          </div>
+          <hr>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <%#= link_to "Edit", edit_user_registration_path, class: "btn btn-info" %>
+              <%= link_to "Update gender", "/", class: "btn btn-info" %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <p>
+            <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+          </p>
+          <p>
+            <%= link_to "Home", root_path %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<% else %>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Сервис автоматического определения пола пользователя</h1>
+      <p>
+        <%= link_to "Sign in", user_session_path, class: "btn btn-primary my-2" %>
+        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-light my-2" %>
+      </p>
+    </div>
+  </section>
+
+<% end %>
