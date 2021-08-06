@@ -51,8 +51,12 @@
             <div class="col-sm-3">
               <h6 class="mb-0">Пол (определён автоматически)</h6>
             </div>
-            <div class="col-sm-9 text-secondary">
-              <%= @user.first_name %>
+            <div class="col-sm-6 text-secondary">
+              Gender
+            </div>
+            <div class="col-sm-3 text-secondary">
+              <%= link_to "Apply", apply_gender_path, class: "btn btn-success" %>
+              <%= link_to "Upd", update_gender_path, class: "btn btn-warning" %>
             </div>
           </div>
           <hr>

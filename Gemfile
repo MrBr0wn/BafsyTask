@@ -29,6 +29,7 @@ gem 'pg', '~> 1.1'
 gem 'activeadmin'
 gem 'devise', '~> 4.2'
 gem 'bootstrap', '~> 4.0'
+gem 'httparty'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

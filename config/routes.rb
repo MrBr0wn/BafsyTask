@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   # get "/signup", to: "users#signup"
   post "/registration", to: "users#registration"
   get "/profile", to: "users#profile"
+  get "/apply_gender", to: "users#apply_gender"
+  get "/update_gender", to: "users#update_gender"
 end
