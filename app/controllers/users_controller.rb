@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     if user_signed_in?
       @user = User.find(current_user.id)
       @user_name = "{#{@user.last_name} #{@user.first_name} #{@user.patronymic}}"
-      @gender = "M" # get_gender(@user_name)
+      @gender = get_gender(@user_name)
       if @user.update(gender: @gender, confirmed_gender: false)
         render json: { gender: @gender, status: "Пол (определён автоматически)" }, status: 200
       else

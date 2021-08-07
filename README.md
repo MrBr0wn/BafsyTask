@@ -9,10 +9,6 @@ Things you may want to cover:
 
 * RubyOnRails version rails 6.1.4
 
-* System dependencies
+* Dashboard of administrator /admin
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
+* Database creation and initialization bundle exec rake db:setup
