@@ -5,9 +5,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   #
   root "users#profile"
-  # get "/signup", to: "users#signup"
   post "/registration", to: "users#registration"
   get "/profile", to: "users#profile"
-  get "/apply_gender", to: "users#apply_gender"
+  get "/confirm_gender", to: "users#confirm_gender"
   get "/update_gender", to: "users#update_gender"
 end

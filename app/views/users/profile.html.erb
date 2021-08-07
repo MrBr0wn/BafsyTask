@@ -49,22 +49,22 @@
 
           <div class="row">
             <div class="col-sm-3">
-              <h6 class="mb-0">Пол (определён автоматически)</h6>
+              <h6 class="mb-0" id="status_gender">Пол
+                <% if !@user.confirmed_gender %>
+                  (определён автоматически)
+                <% else %>
+                  (подтвержден)
+                <% end %>
+              </h6>
             </div>
-            <div class="col-sm-6 text-secondary">
-              Gender
+            <div class="col-sm-5 text-secondary" id="gender">
+              <%= @user.gender %>
             </div>
-            <div class="col-sm-3 text-secondary">
-              <%= link_to "Apply", apply_gender_path, class: "btn btn-success" %>
-              <%= link_to "Upd", update_gender_path, class: "btn btn-warning" %>
-            </div>
-          </div>
-          <hr>
-
-          <div class="row">
-            <div class="col-sm-12">
-              <%#= link_to "Edit", edit_user_registration_path, class: "btn btn-info" %>
-              <%= link_to "Update gender", "/", class: "btn btn-info" %>
+            <div class="col-sm-4 text-secondary">
+              <% if !@user.confirmed_gender %>
+                <%= link_to "Подтвердить", confirm_gender_path, id: "confirm_gender", class: "btn btn-success btn-sm", remote: true %>
+              <% end %>
+              <%= link_to "Обновить", update_gender_path, id: "update_gender",class: "btn btn-warning btn-sm", remote: true %>
             </div>
           </div>
 

@@ -19,21 +19,24 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def confirm_gender
+    @user = User.find(current_user.id)
+    @current_date = DateTime.now
+    if @user.update(confirmed_gender: true, gender_updated_at: @current_date)
+      render json: {}, status: 200
+    end
+  end
+
   def update_gender
     if user_signed_in?
-      # respond_to do |format|
-      #   if @appointment.save
-      #     AppointmentMailer.with(client: @appointment).send_to_client.deliver_later
-      #     AppointmentMailer.with(company: @appointment).send_to_company.deliver_later
-      #     session[@appointment.news_id] = "sended"
-      #     format.html
-      #     format.js
-      #   else
-      #     format.html { redirect_to "/404" }
-      #   end
-      # end
-      @user_name = "{#{current_user.last_name} #{current_user.first_name} #{current_user.patronymic}}"
-      @gender = get_gender(@user_name)
+      @user = User.find(current_user.id)
+      @user_name = "{#{@user.last_name} #{@user.first_name} #{@user.patronymic}}"
+      @gender = "M" # get_gender(@user_name)
+      if @user.update(gender: @gender, confirmed_gender: false)
+        render json: { gender: @gender, status: "Пол (определён автоматически)" }, status: 200
+      else
+        render json: {}, status: 500
+      end
     else
       redirect_to root_path, :flash => { :notice => "Nothing run" }
     end
@@ -60,6 +63,6 @@ class UsersController < ApplicationController
         :body => data,
         :headers => headers
     )
-    res = res[0]["gender"]
+    res[0]["gender"]
   end
 end
