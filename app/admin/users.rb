@@ -26,7 +26,22 @@ ActiveAdmin.register User do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  #
+
+  # Form page
+  form do |f|
+
+    f.inputs do
+      f.input :last_name
+      f.input :first_name
+      f.input :patronymic
+      f.input :email
+      f.input :gender
+      f.input :confirmed_gender
+    end
+
+    f.actions
+  end
+
   controller do
 
     def get_gender(name)

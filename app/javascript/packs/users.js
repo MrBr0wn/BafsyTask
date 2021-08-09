@@ -6,7 +6,7 @@ $(document).ready(function() {
             let detail = event.detail;
             if (detail[1] == "OK") {
                 $("#status_gender").html("Пол (подтвержден)");
-                $(this).remove();
+                $(this).hide();
                 console.log("OK");
             } else {
                 $("#status_gender").html("Пол (определён автоматически)");
@@ -23,7 +23,8 @@ $(document).ready(function() {
             if (detail[1] == "OK") {
                 $("#status_gender").html(gender["status"]);
                 $("#gender").html(gender["gender"]);
-                console.log(gender);
+                $("#confirm_gender").show();
+                console.log("gender: ", gender["gender"]);
             } else {
                 console.log("Error updating.");
             }

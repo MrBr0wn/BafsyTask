@@ -61,10 +61,25 @@
               <%= @user.gender %>
             </div>
             <div class="col-sm-4 text-secondary">
-              <% if !@user.confirmed_gender %>
-                <%= link_to "Подтвердить", confirm_gender_path, id: "confirm_gender", class: "btn btn-success btn-sm", remote: true %>
+              <% if @user.confirmed_gender %>
+                <%= link_to "Подтвердить", confirm_gender_path,
+                            id: "confirm_gender",
+                            class: "btn btn-success btn-sm",
+                            remote: true,
+                            style: "display: none;"
+                %>
+              <% else %>
+                <%= link_to "Подтвердить", confirm_gender_path,
+                            id: "confirm_gender",
+                            class: "btn btn-success btn-sm",
+                            remote: true
+                %>
               <% end %>
-              <%= link_to "Обновить", update_gender_path, id: "update_gender",class: "btn btn-warning btn-sm", remote: true %>
+              <%= link_to "Обновить", update_gender_path,
+                          id: "update_gender",
+                          class: "btn btn-warning btn-sm",
+                          remote: true
+              %>
             </div>
           </div>
 

@@ -1,0 +1,27 @@
+ru:
+  formtastic:
+    create: "Создать %{model}"
+    update: "Обновить %{model}"
+
+  activerecord:
+    models:
+      user: "Пользователь"
+
+    attributes:
+      user:
+        id: "#"
+        email: "Email"
+        last_name: "Фамилия"
+        first_name: "Имя"
+        patronymic: "Отчество"
+        gender: "Пол"
+        confirmed_gender: "Подтвержден пол"
+        gender_updated_at: "Пол обновлен"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        created_at: "Дата создания"
+  time:
+    formats:
+      long: "%Y-%m-%d %H:%M:%S"
+  date:
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
