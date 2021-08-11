@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def registration
+    # сразу определить пол
     @user = User.new(sign_up_params)
 
     if @user.save
@@ -30,8 +31,8 @@ class UsersController < ApplicationController
   def update_gender
     if user_signed_in?
       @user = User.find(current_user.id)
-      @user_name = "{#{@user.last_name} #{@user.first_name} #{@user.patronymic}}"
-      @gender = get_gender(@user_name)
+      @user_name = "{#{@user.last_name} #{@user.first_name} #{@user.patronymic}}" # убрать в модель и написать тест
+      @gender = get_gender(@user_name) # над этим тоже подумать обновление/подтверждение
       if @user.update(gender: @gender, confirmed_gender: false)
         render json: { gender: @gender, status: "Пол (определён автоматически)" }, status: 200
       else
@@ -50,8 +51,10 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :patronymic, :gender, :email, :password, :password_confirmation, :current_password)
   end
 
+  # TODO: перенести в метод отдельный
   def get_gender(name)
     data = [name].to_json
+    # ключи убрать
     headers = {
                    'Content-Type' => 'application/json',
                    'Authorization' => 'Token 69129f79ee2f6e99f8ee3b583f0f7d61ec5fbc25',
