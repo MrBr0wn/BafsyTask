@@ -12,11 +12,11 @@ class User < ApplicationRecord
   # getting gender of user over API Dadata
   def self.get_gender(name)
     data = [name].to_json
-    # TODO: ключи убрать credentials
+
     headers = {
         'Content-Type' => 'application/json',
-        'Authorization' => 'Token 74e8c41778bbdc70dc29d19fe2907c83bdc9dc02',
-        'X-Secret' => '1fd705589302da6ff54d5f43868925d22c2345e3'
+        'Authorization' => "Token #{Rails.application.credentials.dadata[:API_key]}",
+        'X-Secret' => "#{Rails.application.credentials.dadata[:secret_key]}"
     }
 
     res = HTTParty.post(
