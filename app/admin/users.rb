@@ -44,6 +44,7 @@ ActiveAdmin.register User do
 
   controller do
 
+    # TODO: избавиться от DRY
     def get_gender(name)
       full_name = "#{params[:user][:last_name]} #{params[:user][:first_name]} #{params[:user][:patronymic]}"
       data = [full_name].to_json
