@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
-  describe "GET /registration" do
+  describe "GET /profile" do
     it "returns http success" do
-      get "/users/registration"
+      get "/profile"
       expect(response).to have_http_status(:success)
     end
   end

@@ -28,7 +28,6 @@ class User < ApplicationRecord
   end
 
   # getting full name of user from object
-  # TODO: Написать тест для этого метода
   def self.get_full_name(obj)
     @full_name = "#{obj.last_name} #{obj.first_name} #{obj.patronymic}"
   end
