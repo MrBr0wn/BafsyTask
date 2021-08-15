@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   end
 
   def registration
-    # TODO: сразу определить пол
     @user = User.new(sign_up_params)
 
     if @user.save
@@ -22,18 +21,15 @@ class UsersController < ApplicationController
 
   def confirm_gender
     @user = User.find(current_user.id)
-    @current_date = DateTime.now
-    if @user.update(confirmed_gender: true, gender_updated_at: @current_date)
+    if @user.update(confirmed_gender: true)
       render json: {}, status: 200
     end
   end
 
   def update_gender
     if user_signed_in?
-      @user = User.find(current_user.id)
-      @user_name = User.get_full_name(@user)
-      @gender = User.get_gender(@user_name) # TODO: над этим тоже подумать обновление/подтверждение
-      if @user.update(gender: @gender, confirmed_gender: false)
+      @user = User.update_user_gender(current_user.id)
+      if @user
         render json: { gender: @gender, status: "Пол (определён автоматически)" }, status: 200
       else
         render json: {}, status: 500

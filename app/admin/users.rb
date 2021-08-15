@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
 
-  after_update :get_gender
+  after_update :update_user_gender
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -44,25 +44,8 @@ ActiveAdmin.register User do
 
   controller do
 
-    # TODO: избавиться от DRY
-    def get_gender(name)
-      full_name = "#{params[:user][:last_name]} #{params[:user][:first_name]} #{params[:user][:patronymic]}"
-      data = [full_name].to_json
-      headers = {
-          'Content-Type' => 'application/json',
-          'Authorization' => 'Token 69129f79ee2f6e99f8ee3b583f0f7d61ec5fbc25',
-          'X-Secret' => '375cfb0bff7a081ea782a50d88c8a6be8ac73521'
-      }
-
-      res = HTTParty.post(
-          'https://cleaner.dadata.ru/api/v1/clean/name',
-          :body => data,
-          :headers => headers
-      )
-      res[0]["gender"]
-
-      @user = User.find(params[:id])
-      @user.update(gender: res[0]["gender"])
+    def update_user_gender(id)
+      User.update_user_gender(params[:id])
     end
   end
   
