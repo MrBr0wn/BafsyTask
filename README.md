@@ -1,14 +1,12 @@
-# README
+# BafsyTask
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Мини-приложение (тестовое задание) автоматического определения пола пользователя
+через API сервиса dadata.ru
 
-Things you may want to cover:
+- Ruby version ruby-3.0.0
 
-* Ruby version ruby-3.0.0
+- RubyOnRails version rails 6.1.4
 
-* RubyOnRails version rails 6.1.4
+- Dashboard of administrator /admin
 
-* Dashboard of administrator /admin
-
-* Database creation and initialization bundle exec rake db:setup
+- Database creation and initialization bundle exec rake db:setup
