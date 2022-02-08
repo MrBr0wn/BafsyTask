@@ -28,8 +28,9 @@ class UsersController < ApplicationController
 
   def update_gender
     if user_signed_in?
-      @user = User.update_user_gender(current_user.id)
-      if @user
+      @user = User.find(current_user.id)
+
+      if @user.update_user_gender
         render json: { gender: @gender, status: "Пол (определён автоматически)" }, status: 200
       else
         render json: {}, status: 500

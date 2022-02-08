@@ -10,10 +10,9 @@ class User < ApplicationRecord
   # getting the gender of a new User after registration
   after_create :update_user_gender
 
-  private
 
   # getting User gender over API Dadata
-  def self.get_gender(name)
+  def get_gender(name)
     data = [name].to_json
 
     headers = {
@@ -31,23 +30,19 @@ class User < ApplicationRecord
   end
 
   # getting full name of User from object
-  def self.get_full_name(obj)
+  def get_full_name(obj)
     @full_name = "#{obj.last_name} #{obj.first_name} #{obj.patronymic}"
   end
 
   # getting the User from the db after updating,
   # building his full name,
   # getting his gender and update User with gender
-  def self.update_user_gender(id)
-    @user = id.blank? ? User.find(params[:id]) : User.find(id)
+  def update_user_gender
     @current_date = DateTime.now
-    full_name = get_full_name(@user)
+    full_name = get_full_name(self)
     gender = get_gender(full_name)
-    @user.update({ gender: gender, confirmed_gender: false, gender_updated_at: @current_date })
+    confirmed_gender = self.confirmed_gender
+    self.update({ gender: gender, confirmed_gender: confirmed_gender, gender_updated_at: @current_date })
   end
 
-  # after_create callback
-  def update_user_gender
-    User.update_user_gender(self.id)
-  end
 end

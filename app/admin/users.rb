@@ -44,8 +44,8 @@ ActiveAdmin.register User do
 
   controller do
 
-    def update_user_gender(id)
-      User.update_user_gender(params[:id])
+    def update_user_gender(user)
+      user.update_user_gender
     end
   end
   
