@@ -1,7 +1,7 @@
 # BafsyTask
 
 Мини-приложение (тестовое задание) автоматического определения пола пользователя
-через API сервиса dadata.ru
+через API сервиса [dadata.ru](dadata.ru)
 
 - Ruby version ruby-3.0.0
 
@@ -9,4 +9,6 @@
 
 - Dashboard of administrator /admin
 
-- Database creation and initialization bundle exec rake db:setup
+- Database creation and initialization `$ bundle exec rake db:setup`
+
+- Run tests `$ rspec rspec/`

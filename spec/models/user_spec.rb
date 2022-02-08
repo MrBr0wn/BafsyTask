@@ -44,23 +44,23 @@ RSpec.describe User, type: :model do
 
   describe "Methods:" do
     it 'method get_full_name should be return full name of user' do
-      expect(User.get_full_name(subject)).to eq(full_name)
+      expect(subject.get_full_name(subject)).to eq(full_name)
     end
 
     it 'method get_full_name should be not valid if empty' do
       # subject.last_name = ""
       # subject.first_name = ""
       # subject.patronymic = ""
-      full_name = User.get_full_name(subject).delete(" ")
+      full_name = subject.get_full_name(subject).delete(" ")
       expect(full_name.delete(" ")).to_not be_empty
     end
 
     it 'method get_gender should be not valid if empty' do
-      expect(User.get_gender(full_name)).to_not be_empty
+      expect(subject.get_gender(full_name)).to_not be_empty
     end
 
     it 'method get_gender should be return М/Ж/НД' do
-      expect(User.get_gender(full_name)).to eq('М').or eq('Ж').or eq('НД')
+      expect(subject.get_gender(full_name)).to eq('М').or eq('Ж').or eq('НД')
     end
   end
 
